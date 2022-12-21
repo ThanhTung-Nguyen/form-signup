@@ -1,0 +1,13 @@
+.ant-layout .ant-layout-header {
+    /* width: 375px; */
+    height: 64px;
+    background-color: #136AFB;
+}
+.form {
+    width: 346px;
+    height: 939px;
+    margin: auto;
+    background-color: white;
+    
+    border-radius: 16px
+}
