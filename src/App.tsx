@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Layout } from "antd";
 import logo from "./images/logo-trang-01.png";
 import FormSignUp from "./components/FormSignUp";
+import FormResult from "./components/FormResult";
 import "./App.css";
 const { Header, Content } = Layout;
 function App() {
@@ -11,7 +12,7 @@ function App() {
         <Image src={logo} width={98} height={40} />
       </Header>
       <Content>
-        <FormSignUp/>
+        <FormResult />
       </Content>
     </Layout>
   );
