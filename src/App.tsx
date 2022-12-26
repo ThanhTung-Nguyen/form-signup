@@ -9,10 +9,10 @@ function App() {
   return (
     <Layout>
       <Header>
-        <Image src={logo} width={98} height={40} />
+        <Image src={logo} width={98} height={40} preview={false} />
       </Header>
       <Content>
-        <FormResult />
+        <FormSignUp />
       </Content>
     </Layout>
   );

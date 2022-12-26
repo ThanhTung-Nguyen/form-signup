@@ -3,10 +3,11 @@
     background-color: #136AFB;
 }
 .ant-layout-content, body {
-    /* background-image: url(./images/375.png); */
-    background-size: cover;
+    background-color: #F9FAFF;
+    background-image: url(./images/375.png);
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
 }
 .form_cover {
     background-color: #FFFFFF;
@@ -14,7 +15,7 @@
     margin: 1.5em auto 8.688em auto;
     width: 21.625em;
     height: 58.688em;
-    box-shadow: 3px 17px 32px rgba(19, 106, 251, 0.3);
+    box-shadow: 0.188em 1.063em 2em rgba(19, 106, 251, 0.3);
 }
 .form {
     margin: 0 0.125em;
@@ -45,24 +46,50 @@
 .ant-input-affix-wrapper, .ant-picker, .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
     border-radius: 0.313em;
 }
-.mobile {
-    width: 100%;
-    /* height: 105px; */
-    position: fixed;
-    bottom: 0;
-}
+
 /* FormSignUp */
 /* ============================================== */
-
+.checked {
+    width: 9.375em;
+    height: 9.375em;
+}
 .formresult_cover {
-    width: 343px;
-    height: 423px;
-    border-radius: 16px;
+    width: 21.438em;
+    height: 26.438em;
+    border-radius: 1em;
     background-color: #FFFFFF;
-    margin: 131px auto 194px auto;
+    margin: 8.188em auto 12.125em auto;
+    position: relative;
+    box-shadow: 0.188em 1.063em 2em rgba(19, 106, 251, 0.3);
+}
+.formresult_title {
+    position: absolute;
+    width: 16.688em;
+    height: 2.625em;
+    left: 2.375em;
+    top: 17.688em;
+    font-weight: 600;
+    font-size: 16px;    
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: #07345A;
+}
+.formresult_text{
+    position: absolute;
+    width: 264px;
+    height: 18px;
+    left: 40px;
+    top: 340px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: #07345A;
 }
 /* Tablet */
-@media screen and (min-width: 23.5em) and (max-width: 48em) {
+@media screen and (min-width: 48em) and (max-width: 89.938em) {
     .ant-layout .ant-layout-header {
         height: 5em;
     }
@@ -89,8 +116,11 @@
     .ant-layout-content, body {
     background-image: url(./images/1440.png);
     }
+
+    /* =========================== */
+    
 }
-@media screen and (min-width: 48.063em) {
+@media screen and (min-width: 90em) {
     .ant-layout .ant-layout-header {
         height: 5em;
     }
@@ -107,5 +137,29 @@
     }
      .ant-layout-content, body {
     background-image: url(./images/1920.png);
+    }
+    .formresult_cover {
+        width: 463px;
+        height: 503px;
+        border-radius: 16px;
+        margin: 181px auto 260px auto;
+    }
+    .checked {
+        width: 189px;
+        height: 189px;
+    }
+    .formresult_title {
+        width: 380px;
+        height: 52px;
+        left: 40px;
+        top: 331px;
+        font-size: 20px;
+ 
+    }
+    .formresult_text {
+        width: 399px;
+        height: 18px;
+        left: 32px;
+        top: 404px;
     }
 }

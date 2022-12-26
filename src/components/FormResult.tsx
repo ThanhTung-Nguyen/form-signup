@@ -1,12 +1,21 @@
 import React from 'react'
-import { Image } from 'antd';
-import context from "../images/Mobile.png";
+import { Image, Typography } from 'antd';
+import { Result } from 'antd';
+import TitleResult from "./TitleResult";
+import SubTitle from './SubTitle';
+import Checked from './Checked';
 import "../App.css"
+
+const { Title, Text, Paragraph } = Typography;
 const FormResult = () => {
   return (
     <>
       <div className="formresult_cover">
-        {/* <Image className="mobile" src={context} /> */}
+        <Result
+          icon={<Checked />}
+          title={<TitleResult />}
+          subTitle={<SubTitle />}
+        />
       </div>
     </>
   );

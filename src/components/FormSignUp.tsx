@@ -23,35 +23,61 @@ dayjs.extend(customParseFormat);
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
 const { Title } = Typography;
 const FormSignUp = () => {
+  const onFinish = (fieldsValue: any) => {
+    const values = {
+      ...fieldsValue,
+      sid: fieldsValue["sid"],
+      name: fieldsValue["name"],
+      phone: fieldsValue["phone"],
+      date: fieldsValue["date"].format("DD-MM-YYYY"),
+      time: fieldsValue["time"],
+      onoff: fieldsValue["onoff"],
+    };
+    console.log("Received values of form:", values);
+    
+  }
   return (
     <>
       <div className="form_cover">
-        <Form className="form" layout="vertical" colon={false} labelWrap={true}>
+        <Form
+          className="form"
+          layout="vertical"
+          colon={false}
+          labelWrap={true}
+          onFinish={onFinish}
+        >
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24}>
               <Space className="form_title">
-                <Avatar
-                  className="logo"
-                  src={logo}
-                />
+                <Avatar className="logo" src={logo} />
                 <Title level={3}>ĐĂNG KÝ TƯ VẤN KẾT QUẢ KHÁM</Title>
               </Space>
               <Divider />
             </Col>
-            <Col xs={24} sm={12} md={12} lg={12} xl={12} xxl={12}>
-              <Form.Item htmlFor="sid" label="Mã SID" required>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+              <Form.Item name={"sid"} htmlFor="sid" label="Mã SID" required>
                 <Input id="sid" placeholder="Nhập mã SID" allowClear />
               </Form.Item>
-              <Form.Item htmlFor="name" label="Họ tên" required>
+              <Form.Item name={"name"} htmlFor="name" label="Họ tên" required>
                 <Input id="name" placeholder="Nhập họ tên" allowClear />
               </Form.Item>
-              <Form.Item htmlFor="phone" label="Số điện thoại liên hệ" required>
+              <Form.Item
+                name={"phone"}
+                htmlFor="phone"
+                label="Số điện thoại liên hệ"
+                required
+              >
                 <Input id="phone" placeholder="Nhập số điện thoại" allowClear />
               </Form.Item>
               <Divider className="ke" />
             </Col>
-            <Col xs={24} sm={12} md={12} lg={12} xl={12} xxl={12}>
-              <Form.Item htmlFor="date" label="Ngày tư vấn" required>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+              <Form.Item
+                name={"date"}
+                htmlFor="date"
+                label="Ngày tư vấn"
+                required
+              >
                 <DatePicker
                   id="date"
                   style={{ width: "100%" }}
@@ -60,7 +86,12 @@ const FormSignUp = () => {
                   placeholder="Nhập ngày hoặc chọn(vd: 27/11/1995....)"
                 />
               </Form.Item>
-              <Form.Item htmlFor="time" label="Khung giờ tư vấn" required>
+              <Form.Item
+                name={"time"}
+                htmlFor="time"
+                label="Khung giờ tư vấn"
+                required
+              >
                 <Select
                   id="time"
                   style={{ width: "100%" }}
@@ -68,17 +99,22 @@ const FormSignUp = () => {
                   allowClear
                   options={[
                     {
-                      value: "1",
+                      value: "giờ thứ nhất",
                       label: "giờ thứ nhất",
                     },
                     {
-                      value: "2",
+                      value: "giờ thứ hai",
                       label: "giờ thứ hai",
                     },
                   ]}
                 />
               </Form.Item>
-              <Form.Item htmlFor="onoff" label="Hình thức tư vấn" required>
+              <Form.Item
+                name={"onoff"}
+                htmlFor="onoff"
+                label="Hình thức tư vấn"
+                required
+              >
                 <Select
                   id="onoff"
                   style={{ width: "100%" }}
@@ -108,7 +144,7 @@ const FormSignUp = () => {
             </Col>
             <Col xs={24} md={{ span: 12, offset: 6 }}>
               <Form.Item>
-                <Button className="signup_btn" type="primary">
+                <Button className="signup_btn" type="primary" htmlType="submit">
                   Đăng ký
                 </Button>
               </Form.Item>
@@ -116,7 +152,7 @@ const FormSignUp = () => {
           </Row>
         </Form>
       </div>
-      <Image className="mobile" src={context} />
+      {/* <Image className="mobile" src={context} /> */}
     </>
   );
 };
