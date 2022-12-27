@@ -7,14 +7,14 @@ import "./App.css";
 const { Header, Content } = Layout;
 function App() {
   return (
-    <Layout>
-      <Header>
-        <Image src={logo} width={98} height={40} preview={false} />
-      </Header>
-      <Content>
-        <FormSignUp />
-      </Content>
-    </Layout>
+      <Layout>
+        <Header>
+          <Image src={logo} width={98} height={40} preview={false} />
+        </Header>
+        <Content>
+          <FormSignUp/>
+        </Content>
+      </Layout>
   );
 }
 

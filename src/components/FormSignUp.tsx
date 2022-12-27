@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,32 +10,34 @@ import {
   Row,
   Select,
   Space,
-  Typography,
-  Image
+  Typography
 } from "antd";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "../App.css";
 import logo from "../images/logo2.png";
-import context from "../images/Mobile.png"
-dayjs.extend(customParseFormat);
+// dayjs.extend(customParseFormat);
 
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
 const { Title } = Typography;
 const FormSignUp = () => {
+  const [loading, setLoading] = useState(false);
+  
   const onFinish = (fieldsValue: any) => {
+    setLoading(true);
     const values = {
       ...fieldsValue,
       sid: fieldsValue["sid"],
       name: fieldsValue["name"],
       phone: fieldsValue["phone"],
-      date: fieldsValue["date"].format("DD-MM-YYYY"),
+      date: fieldsValue["date"].format("DD/MM/YYYY"),
       time: fieldsValue["time"],
       onoff: fieldsValue["onoff"],
+      cause: fieldsValue["cause"]
     };
     console.log("Received values of form:", values);
-    
-  }
+  };
+
   return (
     <>
       <div className="form_cover">
@@ -55,17 +57,37 @@ const FormSignUp = () => {
               <Divider />
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
-              <Form.Item name={"sid"} htmlFor="sid" label="Mã SID" required>
-                <Input id="sid" placeholder="Nhập mã SID" allowClear />
+              <Form.Item
+                name={"sid"}
+                htmlFor="sid"
+                label="Mã SID"
+                rules={[{ required: true, message: "Nhập SID" }]}
+              >
+                <Input
+                  id="sid"
+                  placeholder="Nhập mã SID"
+                  type="number"
+                  allowClear
+                />
               </Form.Item>
-              <Form.Item name={"name"} htmlFor="name" label="Họ tên" required>
+              <Form.Item
+                name={"name"}
+                htmlFor="name"
+                label="Họ tên"
+                rules={[{ required: true, message: "Nhập tên của bạn" }]}
+              >
                 <Input id="name" placeholder="Nhập họ tên" allowClear />
               </Form.Item>
               <Form.Item
                 name={"phone"}
                 htmlFor="phone"
                 label="Số điện thoại liên hệ"
-                required
+                rules={[
+                  {
+                    required: true,
+                    message: "Số điện thoại không được để trống",
+                  },
+                ]}
               >
                 <Input id="phone" placeholder="Nhập số điện thoại" allowClear />
               </Form.Item>
@@ -76,7 +98,12 @@ const FormSignUp = () => {
                 name={"date"}
                 htmlFor="date"
                 label="Ngày tư vấn"
-                required
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng chọn ngày",
+                  },
+                ]}
               >
                 <DatePicker
                   id="date"
@@ -90,7 +117,12 @@ const FormSignUp = () => {
                 name={"time"}
                 htmlFor="time"
                 label="Khung giờ tư vấn"
-                required
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng chọn khung giờ",
+                  },
+                ]}
               >
                 <Select
                   id="time"
@@ -113,7 +145,12 @@ const FormSignUp = () => {
                 name={"onoff"}
                 htmlFor="onoff"
                 label="Hình thức tư vấn"
-                required
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng hình thức tư vấn",
+                  },
+                ]}
               >
                 <Select
                   id="onoff"
@@ -122,11 +159,11 @@ const FormSignUp = () => {
                   allowClear
                   options={[
                     {
-                      value: "off",
+                      value: "offline",
                       label: "Tư vấn trực tiếp",
                     },
                     {
-                      value: "on",
+                      value: "online",
                       label: "Tư vấn online",
                     },
                   ]}
@@ -134,7 +171,7 @@ const FormSignUp = () => {
               </Form.Item>
             </Col>
             <Col xs={24}>
-              <Form.Item htmlFor="cause" label="Lý do tư vấn">
+              <Form.Item name={"cause"} htmlFor="cause" label="Lý do tư vấn">
                 <Input
                   id="cause"
                   placeholder="Nhập lý do"
@@ -142,9 +179,18 @@ const FormSignUp = () => {
                 />
               </Form.Item>
             </Col>
-            <Col xs={24} md={{ span: 12, offset: 6 }}>
+            <Col
+              xs={24}
+              md={{ span: 12, offset: 6 }}
+              // xl={{ span: 14, offset: 5 }}
+            >
               <Form.Item>
-                <Button className="signup_btn" type="primary" htmlType="submit">
+                <Button
+                  className="signup_btn"
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                >
                   Đăng ký
                 </Button>
               </Form.Item>
