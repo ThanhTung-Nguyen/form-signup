@@ -2,7 +2,7 @@
     height: 4em;
     background-color: #136AFB;
 }
-.ant-layout-content, body {
+.ant-layout-content {
     background-color: #F9FAFF;
     background-image: url(./images/375.png);
     background-size: contain;
@@ -94,8 +94,8 @@
     .ant-layout .ant-layout-header {
         height: 5em;
     }
-    body {
-        height: 65.813;
+    .ant-layout-content {
+        height: 80em;
     }
     .form_cover {
         width: 46em;
@@ -114,7 +114,7 @@
     .ke {
         display: none;
     }
-    .ant-layout-content, body {
+    .ant-layout-content {
     background-image: url(./images/1440.png);
     }
 
@@ -136,7 +136,7 @@
     .form {
         margin: 0 3.188em;
     }
-     .ant-layout-content, body {
+     .ant-layout-content{
     background-image: url(./images/1920.png);
     }
     .formresult_cover {

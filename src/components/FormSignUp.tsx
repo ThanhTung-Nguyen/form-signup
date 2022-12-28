@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import {
   Avatar,
   Button,
@@ -16,14 +17,20 @@ import {
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "../App.css";
 import logo from "../images/logo2.png";
+import { useForm } from "antd/es/form/Form";
 // dayjs.extend(customParseFormat);
 
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
 const { Title } = Typography;
 const FormSignUp = () => {
   const [loading, setLoading] = useState(false);
+  const [resolve, setResolve] = useState(false);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
   
   const onFinish = (fieldsValue: any) => {
+    // console.log(fieldsValue);
+    setResolve(true);
     setLoading(true);
     const values = {
       ...fieldsValue,
@@ -42,6 +49,7 @@ const FormSignUp = () => {
     <>
       <div className="form_cover">
         <Form
+          // form={form}
           className="form"
           layout="vertical"
           colon={false}
@@ -190,6 +198,7 @@ const FormSignUp = () => {
                   type="primary"
                   size="large"
                   htmlType="submit"
+                  onClick={() => navigate("/result")}
                 >
                   Đăng ký
                 </Button>
@@ -198,7 +207,6 @@ const FormSignUp = () => {
           </Row>
         </Form>
       </div>
-      {/* <Image className="mobile" src={context} /> */}
     </>
   );
 };

@@ -14,6 +14,7 @@ const FormResult = () => {
           title={<TitleResult />}
           subTitle={<SubTitle />}
         />
+
       </div>
     </>
   );
