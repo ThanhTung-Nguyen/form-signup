@@ -2,7 +2,7 @@
     height: 4em;
     background-color: #136AFB;
 }
-.ant-layout-content, body {
+.ant-layout-content {
     background-color: #F9FAFF;
     background-image: url(./images/375.png);
     background-size: contain;
@@ -94,8 +94,8 @@
     .ant-layout .ant-layout-header {
         height: 5em;
     }
-    body {
-        height: 65.813;
+    .ant-layout .ant-layout-content {
+        height: 80.375em;
     }
     .form_cover {
         width: 46em;
@@ -114,8 +114,8 @@
     .ke {
         display: none;
     }
-    .ant-layout-content, body {
-    background-image: url(./images/1440.png);
+    .ant-layout-content {
+        background-image: url(./images/1440.png);
     }
 
     /* =========================== */
@@ -124,6 +124,9 @@
 @media screen and (min-width: 90em) {
     .ant-layout .ant-layout-header {
         height: 5em;
+    }
+    .ant-layout .ant-layout-content {
+        height: 62.5em;
     }
     .ke {
         display: none;
@@ -134,15 +137,14 @@
         margin: 3.75em auto 17.313em auto;
     }
     .form {
-        margin: 0 3.188em;
+        margin:0 3.188em;
     }
-     .ant-layout-content, body {
+    .ant-layout-content {
     background-image: url(./images/1920.png);
     }
     .formresult_cover {
-        width: 463px;
-        height: 503px;
-        border-radius: 16px;
+        width: 28.938em;
+        height: 31.438em;
         margin: 181px auto 260px auto;
     }
     .checked {
@@ -155,7 +157,6 @@
         left: 40px;
         top: 331px;
         font-size: 20px;
- 
     }
     .formresult_text {
         width: 399px;
