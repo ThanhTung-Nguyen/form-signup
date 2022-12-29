@@ -17,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import logo from "../images/logo2.png";
+import { useForm } from "antd/es/form/Form";
 // dayjs.extend(customParseFormat);
 
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
@@ -225,7 +226,6 @@ const FormSignUp = () => {
           </Form>
         </Spin>
       </div>
-      {/* <Image className="mobile" src={context} /> */}
     </>
   );
 };

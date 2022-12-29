@@ -8,18 +8,16 @@ import "./App.css";
 const { Header, Content } = Layout;
 function App() {
   return (
+    <BrowserRouter>
       <Layout>
         <Header>
           <Image src={logo} width={98} height={40} preview={false} />
         </Header>
         <Content>
-          {/* <FormSignUp /> */}
-          <Routes>
-            <Route path="/" element={<FormSignUp />} />
-            <Route path="result" element={<FormResult />} />
-          </Routes>
+          <FormSignUp/>
         </Content>
       </Layout>
+      </BrowserRouter>
   );
 }
 
