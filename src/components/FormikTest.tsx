@@ -1,4 +1,3 @@
-import {  useState } from "react";
 import {
   Avatar,
   Button,
@@ -15,46 +14,43 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import { useFormik } from "formik";
 import logo from "../images/logo2.png";
 
-
-const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
+const moment = require("moment");
+const dateFormatList = "DD/MM/YYYY";
 const { Title } = Typography;
-const FormSignUp = () => {
-  const [loading, setLoading] = useState(false);
-  const [resolve, setResolve] = useState(false);
-  const [form] = Form.useForm();
+const FormikTest = () => {
   const navigate = useNavigate();
+  const formik = useFormik({
+    enableReinitialize: true,
+    validateOnChange: true,
+    initialValues: {
+      sid: "",
+      name: "",
+      phone: "",
+      date: "",
+      time: "",
+      onoff: "",
+      cause: "",
+    },
+    onSubmit: (values) => {
+      console.log("Receive value of form(formik):", values);
 
-  const onFinish = (fieldsValue: any) => {
-    setResolve(true);
-    setLoading(true);
-    const values = {
-      ...fieldsValue,
-      sid: fieldsValue["sid"],
-      name: fieldsValue["name"],
-      phone: fieldsValue["phone"],
-      date: fieldsValue["date"].format("DD/MM/YYYY"),
-      time: fieldsValue["time"],
-      onoff: fieldsValue["onoff"],
-      cause: fieldsValue["cause"],
-    };
-    console.log("Received values of form:", values);
-    form.resetFields();
-    navigate("result");
-  };
+      navigate("result");
+    },
+  });
 
   return (
     <>
       <div className="form_cover">
-        <Spin spinning={loading}>
+        <Spin spinning={false}>
           <Form
-            form={form}
             className="form"
             layout="vertical"
             colon={false}
             labelWrap={true}
-            onFinish={onFinish}
+            onFinish={formik.handleSubmit}
             onFinishFailed={(err) => {
               console.log("ERROR:", err);
             }}
@@ -79,6 +75,8 @@ const FormSignUp = () => {
                     placeholder="Nhập mã SID"
                     type="number"
                     allowClear
+                    value={formik.values.sid}
+                    onChange={formik.handleChange}
                   />
                 </Form.Item>
                 <Form.Item
@@ -92,6 +90,8 @@ const FormSignUp = () => {
                     placeholder="Nhập họ tên"
                     type="text"
                     allowClear
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
                   />
                 </Form.Item>
                 <Form.Item
@@ -108,8 +108,10 @@ const FormSignUp = () => {
                   <Input
                     id="phone"
                     placeholder="Nhập số điện thoại"
-                    type="number"
+                    type="string"
                     allowClear
+                    value={formik.values.phone}
+                    onChange={formik.handleChange}
                   />
                 </Form.Item>
                 <Divider className="ke" />
@@ -131,6 +133,19 @@ const FormSignUp = () => {
                     style={{ width: "100%" }}
                     format={dateFormatList}
                     placeholder="Nhập ngày hoặc chọn(vd: 27/11/1995....)"
+                    onChange={(value) => {
+                      formik.setFieldValue("date", value);
+                      formik.handleChange(
+                        moment(formik.values.date, "DD/MM/YYYY").format(
+                          "DD/MM/YYYY"
+                        )
+                      );
+                    }}
+                    value={
+                      formik.values.date
+                        ? moment(formik.values.date, "DD/MM/YYYY")
+                        : ""
+                    }
                   />
                 </Form.Item>
                 <Form.Item
@@ -159,6 +174,11 @@ const FormSignUp = () => {
                         label: "giờ thứ hai",
                       },
                     ]}
+                    value={formik.values.time}
+                    onChange={(value) => {
+                      formik.setFieldValue("time", value);
+                      formik.handleChange(value);
+                    }}
                   />
                 </Form.Item>
                 <Form.Item
@@ -187,6 +207,11 @@ const FormSignUp = () => {
                         label: "Tư vấn online",
                       },
                     ]}
+                    value={formik.values.onoff}
+                    onChange={(value) => {
+                      formik.setFieldValue("onoff", value);
+                      formik.handleChange(value);
+                    }}
                   />
                 </Form.Item>
               </Col>
@@ -196,12 +221,15 @@ const FormSignUp = () => {
                     id="cause"
                     placeholder="Nhập lý do"
                     style={{ height: "4.375em", borderRadius: "0.313em" }}
+                    value={formik.values.cause}
+                    onChange={formik.handleChange}
                   />
                 </Form.Item>
               </Col>
               <Col
                 xs={24}
                 md={{ span: 12, offset: 6 }}
+                // xl={{ span: 14, offset: 5 }}
               >
                 <Form.Item>
                   <Button
@@ -222,4 +250,4 @@ const FormSignUp = () => {
   );
 };
 
-export default FormSignUp;
+export default FormikTest;
