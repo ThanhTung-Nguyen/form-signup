@@ -14,7 +14,9 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
+import dayjs from "dayjs";
+import * as Yup from "yup";
 import logo from "../images/logo2.png";
 
 const moment = require("moment");
@@ -23,8 +25,9 @@ const { Title } = Typography;
 const FormikTest = () => {
   const navigate = useNavigate();
   const formik = useFormik({
-    enableReinitialize: true,
+    validateOnMount: false,
     validateOnChange: true,
+    enableReinitialize: true,
     initialValues: {
       sid: "",
       name: "",
@@ -34,13 +37,20 @@ const FormikTest = () => {
       onoff: "",
       cause: "",
     },
+    validationSchema: Yup.object().shape({
+      sid: Yup.number().required("Nhập SID"),
+      name: Yup.string().required("Nhập tên của bạn"),
+      phone: Yup.string().required("Nhập số điện thoại"),
+      date: Yup.string().required("Vui lòng chọn ngày"),
+      time: Yup.string().required("Vui lòng chọn khung giờ"),
+      onoff: Yup.string().required("Chọn hình thức tư vấn"),
+    }),
     onSubmit: (values) => {
       console.log("Receive value of form(formik):", values);
 
       navigate("result");
     },
   });
-
   return (
     <>
       <div className="form_cover">
@@ -77,6 +87,7 @@ const FormikTest = () => {
                     allowClear
                     value={formik.values.sid}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
                 <Form.Item
@@ -92,6 +103,7 @@ const FormikTest = () => {
                     allowClear
                     value={formik.values.name}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
                 <Form.Item
@@ -112,6 +124,7 @@ const FormikTest = () => {
                     allowClear
                     value={formik.values.phone}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
                 <Divider className="ke" />
@@ -146,6 +159,7 @@ const FormikTest = () => {
                         ? moment(formik.values.date, "DD/MM/YYYY")
                         : ""
                     }
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
                 <Form.Item
@@ -179,6 +193,7 @@ const FormikTest = () => {
                       formik.setFieldValue("time", value);
                       formik.handleChange(value);
                     }}
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
                 <Form.Item
@@ -212,6 +227,7 @@ const FormikTest = () => {
                       formik.setFieldValue("onoff", value);
                       formik.handleChange(value);
                     }}
+                    onBlur={formik.handleBlur}
                   />
                 </Form.Item>
               </Col>
