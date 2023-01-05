@@ -236,7 +236,7 @@ const FormikTest = () => {
                   <Input
                     id="cause"
                     placeholder="Nhập lý do"
-                    style={{ height: "4.375em", borderRadius: "0.313em" }}
+                    style={{ height: "4.375em"}}
                     value={formik.values.cause}
                     onChange={formik.handleChange}
                   />
@@ -254,7 +254,7 @@ const FormikTest = () => {
                     size="large"
                     htmlType="submit"
                   >
-                    💅 Đăng ký
+                    Đăng ký
                   </Button>
                 </Form.Item>
               </Col>

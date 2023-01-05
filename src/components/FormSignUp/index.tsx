@@ -1,6 +1,5 @@
 import {  useState } from "react";
 import {
-  Avatar,
   Button,
   Col,
   DatePicker,
@@ -9,17 +8,13 @@ import {
   Input,
   Row,
   Select,
-  Space,
-  Typography,
   Spin,
 } from "antd";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
-import logo from "../images/logo2.png";
+import "../../App.css";
+import TitleSignUp from "./title/TitleSignUp";
 
-
-const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
-const { Title } = Typography;
+const dateFormatList = "DD/MM/YYYY";
 const FormSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [resolve, setResolve] = useState(false);
@@ -61,11 +56,7 @@ const FormSignUp = () => {
           >
             <Row gutter={{ sm: 16, md: 16, lg: 32 }}>
               <Col xs={24}>
-                <Space className="form_title">
-                  <Avatar className="logo" src={logo} />
-                  <Title level={3}>ĐĂNG KÝ TƯ VẤN KẾT QUẢ KHÁM</Title>
-                </Space>
-                <Divider />
+                <TitleSignUp/>
               </Col>
               <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
                 <Form.Item
@@ -210,7 +201,7 @@ const FormSignUp = () => {
                     size="large"
                     htmlType="submit"
                   >
-                    💅 Đăng ký
+                    Đăng ký
                   </Button>
                 </Form.Item>
               </Col>
