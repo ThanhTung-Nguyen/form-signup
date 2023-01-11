@@ -13,17 +13,30 @@ import {
 import { useNavigate } from "react-router-dom";
 import "../../App.css";
 import TitleSignUp from "./title/TitleSignUp";
-
+import ModalResult from "../ModalResult";
 const dateFormatList = "DD/MM/YYYY";
 const FormSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [resolve, setResolve] = useState(false);
   const [form] = Form.useForm();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const navigate = useNavigate();
 
   const onFinish = (fieldsValue: any) => {
     setResolve(true);
-    setLoading(true);
+    // setLoading(true);
     const values = {
       ...fieldsValue,
       sid: fieldsValue["sid"],
@@ -36,7 +49,9 @@ const FormSignUp = () => {
     };
     console.log("Received values of form:", values);
     form.resetFields();
-    navigate("result");
+    // navigate("result");
+    // setLoading(false);
+    showModal();
   };
 
   return (
@@ -56,7 +71,7 @@ const FormSignUp = () => {
           >
             <Row gutter={{ sm: 16, md: 16, lg: 32 }}>
               <Col xs={24}>
-                <TitleSignUp/>
+                <TitleSignUp />
               </Col>
               <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
                 <Form.Item
@@ -190,10 +205,7 @@ const FormSignUp = () => {
                   />
                 </Form.Item>
               </Col>
-              <Col
-                xs={24}
-                md={{ span: 12, offset: 6 }}
-              >
+              <Col xs={24} md={{ span: 12, offset: 6 }}>
                 <Form.Item>
                   <Button
                     className="signup_btn"
@@ -208,6 +220,7 @@ const FormSignUp = () => {
             </Row>
           </Form>
         </Spin>
+        <ModalResult open={isModalOpen} onOK={handleOk} onCancel={handleCancel} />
       </div>
     </>
   );

@@ -54,15 +54,51 @@
     width: 9.375em;
     height: 9.375em;
 }
-.formresult_cover {
-    width: 21.438em;
-    height: 26.438em;
+.ant-modal .ant-modal-content {
+    width: 343px;
+    height: 423px;
     border-radius: 1em;
     background-color: #FFFFFF;
     margin: 8.188em auto 12.125em auto;
     position: relative;
     box-shadow: 0.188em 1.063em 2em rgba(19, 106, 251, 0.3);
 }
+/* .ant-modal-content {
+    display: none;
+} */
+.modal_result {
+    
+}
+.modalresult_checked {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
+}
+.modalresult_title {
+    display: flex;
+    justify-content: center;
+    margin-top: 75px;
+    font-weight: 600;
+    font-size: 16px;    
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: #07345A;
+}
+.modalresult_subtitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: #07345A;
+}
+ /* ============================================================== */
 .formresult_title {
     position: absolute;
     width: 16.688em;
@@ -89,6 +125,7 @@
     text-align: center;
     color: #07345A;
 }
+/* ====================================================================== */
 /* Tablet */
 @media screen and (min-width: 48em) and (max-width: 89.938em) {
     .ant-layout .ant-layout-header {
