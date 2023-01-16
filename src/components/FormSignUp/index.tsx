@@ -1,70 +1,36 @@
-import {  useState } from "react";
+import React from "react";
 import {
   Button,
   Col,
   DatePicker,
   Divider,
   Form,
+  FormInstance,
   Input,
   Row,
-  Select,
-  Spin,
+  Select
 } from "antd";
-import { useNavigate } from "react-router-dom";
 import "../../App.css";
 import TitleSignUp from "./title/TitleSignUp";
 import ModalResult from "../ModalResult";
+
+interface IFormSignUpProps {
+  form: FormInstance<any> | undefined;
+  onFinish: ((values: any) => void) | undefined;
+}
 const dateFormatList = "DD/MM/YYYY";
-const FormSignUp = () => {
-  const [loading, setLoading] = useState(false);
-  const [resolve, setResolve] = useState(false);
-  const [form] = Form.useForm();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  const navigate = useNavigate();
-
-  const onFinish = (fieldsValue: any) => {
-    setResolve(true);
-    // setLoading(true);
-    const values = {
-      ...fieldsValue,
-      sid: fieldsValue["sid"],
-      name: fieldsValue["name"],
-      phone: fieldsValue["phone"],
-      date: fieldsValue["date"].format("DD/MM/YYYY"),
-      time: fieldsValue["time"],
-      onoff: fieldsValue["onoff"],
-      cause: fieldsValue["cause"],
-    };
-    console.log("Received values of form:", values);
-    form.resetFields();
-    // navigate("result");
-    // setLoading(false);
-    showModal();
-  };
+const FormSignUp:React.FC<IFormSignUpProps> = (props) => {
 
   return (
     <>
       <div className="form_cover">
-        <Spin spinning={loading}>
           <Form
-            form={form}
             className="form"
             layout="vertical"
             colon={false}
             labelWrap={true}
-            onFinish={onFinish}
+            form={props.form}
+            onFinish={props.onFinish}
             onFinishFailed={(err) => {
               console.log("ERROR:", err);
             }}
@@ -219,8 +185,6 @@ const FormSignUp = () => {
               </Col>
             </Row>
           </Form>
-        </Spin>
-        <ModalResult open={isModalOpen} onOK={handleOk} onCancel={handleCancel} />
       </div>
     </>
   );
